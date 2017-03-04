@@ -9,6 +9,6 @@
     "512": "/icon-512.png"
   },
   "name": "augmented-reality",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Recognize a card in the webcam and replace it with a still image."
 }
