@@ -1,0 +1,14 @@
+{
+  "launch_path": "/index.html",
+  "developer": {
+    "name": "tolokoban",
+    "url": "https://github.com/tolokoban/augmented-reality"
+  },
+  "icons": {
+    "128": "/icon-128.png",
+    "512": "/icon-512.png"
+  },
+  "name": "augmented-reality",
+  "version": "0.0.2",
+  "description": "Recognize a card in the webcam and replace it with a still image."
+}
