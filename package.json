@@ -6,7 +6,7 @@
         "type": "git",
         "url": "https://github.com/tolokoban/augmented-reality.git"
     },
-    "homepage": "https://tolokoban.github.io/augmented-reality",
+    "homepage": "https://github.com/tolokoban/augmented-reality",
     "license": "GPL-3.0",
     "scripts": {
         "test": "node node_modules/karma/bin/karma start karma.conf.js",
@@ -24,11 +24,13 @@
         "modules": [],
         "compile": {
             "type": "firefoxos",
-            "files": [ "\\.html$" ]
+            "files": [
+                "\\.html$"
+            ]
         },
         "output": "www"
     },
-    "version": "0.0.1",
+    "version": "0.0.4",
     "reservedModules": [],
     "dependencies": {
         "jasmine-core": "^2.4",
