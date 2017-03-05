@@ -1,4 +1,4 @@
-exports.config={"name":"\"augmented-reality\"","description":"\"Recognize a card in the webcam and replace it with a still image.\"","author":"\"tolokoban\"","version":"\"0.0.4\"","major":"0","minor":"0","revision":"4","date":"2017-03-04T19:22:01.000Z","consts":{}};
+exports.config={"name":"\"augmented-reality\"","description":"\"Recognize a card in the webcam and replace it with a still image.\"","author":"\"tolokoban\"","version":"\"0.0.5\"","major":"0","minor":"0","revision":"5","date":"2017-03-05T13:45:59.000Z","consts":{}};
 var currentLang = null;
 exports.lang = function(lang) {
     if (lang === undefined) {

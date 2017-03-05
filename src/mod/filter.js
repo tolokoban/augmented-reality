@@ -25,9 +25,7 @@ var Filter = function(opts) {
 
     var elem = $.elem( this, 'canvas' );
     initWebGL.call( this );
-    window.addEventListener( 'keydown', function(evt) {
-        if( evt.keyCode != 32 ) return;
-
+    function findLines() {
         var url = elem.toDataURL("image/jpeg", 1.0);
         //window.open(url, '_BLANK');
         var img = new Image();
@@ -40,21 +38,26 @@ var Filter = function(opts) {
             ctx.drawImage( img, 0, 0, w, h );
             var data = ctx.getImageData( 0, 0, w, h ).data;
             var result = HoughTransform( data, w, h );
-            console.info("[filter] result=", result);      
-            ctx.strokeStyle = 'red';
-            ctx.beginPath();
-            var vx = 10000 * Math.cos( result.a );
-            var vy = 10000 * Math.sin( result.a );
-            var x = result.x / that.resolution;
-            var y = result.y / that.resolution;
-            var x1 = x - vx;
-            var y1 = y - vy;
-            var x2 = x + vx;
-            var y2 = y + vy;
-            ctx.moveTo( x1, y1 );
-            ctx.lineTo( x2, y2 );
-            ctx.stroke();
-console.info("[filter] x1, y1, x2, y2=", x1, y1, x2, y2);
+            console.info("[filter] result=", result);
+            var colors = ['red', '#0f0', '#00f', '#fff'];
+            result.forEach(function (item, idx) {
+                var vx = 1000 * item.vx;
+                var vy = 1000 * item.vy;
+                var x = item.x;
+                var y = item.y;
+                var x1 = x - vx;
+                var y1 = y - vy;
+                var x2 = x + vx;
+                var y2 = y + vy;
+                var c = Math.floor( 255 * item.v );
+                ctx.strokeStyle = colors[idx];
+//"rgb(" + c + "," + c + "," + Math.floor(127 + c/2) + ")";
+                ctx.beginPath();
+                ctx.moveTo( x1, y1 );
+                ctx.lineTo( x2, y2 );
+                ctx.stroke();
+            });
+
             $.css( canvas, {
                 width: canvas.width+ "px",
                 height: canvas.height+ "px",
@@ -62,7 +65,13 @@ console.info("[filter] x1, y1, x2, y2=", x1, y1, x2, y2);
             });
             Modal.alert( canvas );
         };
-    }, true);
+    };
+    window.addEventListener( 'keydown', function(evt) {
+        if( evt.keyCode != 32 ) return;
+        findLines();
+    }, true );
+    elem.addEventListener( 'touchstart', findLines, false );
+    elem.addEventListener( 'mouseup', findLines, false );
 
     DB.propRemoveClass( this, 'visible', 'hide' );
     DB.prop( this, 'video' )(function(v) {
@@ -156,7 +165,7 @@ function initWebGL() {
         preserveDrawingBuffer: true,
         premultipliedAlpha: false
     };
-    var gl = canvas.getContext('webgl', opts) 
+    var gl = canvas.getContext('webgl', opts)
             || canvas.getContext('experimental-webgl', opts);
     this._gl = gl;
 
