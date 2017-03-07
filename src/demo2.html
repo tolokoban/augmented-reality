@@ -1,0 +1,10 @@
+<x-html app="demo2">
+    <head><link rel="manifest" href="/augmented-reality/manifest.json"></head>
+    <div id="output"></div>
+    <wdg:button $text="-10" $icon="left-double" $value="10" slot:action="onLeft" />
+    <wdg:button $text="-1" $icon="left" $value="1" slot:action="onLeft" />
+    <wdg:button $text="+1" $icon="right" $value="1" slot:action="onRight" />
+    <wdg:button $text="+10" $icon="right-double" $value="10" slot:action="onRight" />
+    <br/>
+    <code id="line">...</code>
+</x-html>

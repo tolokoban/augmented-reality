@@ -2,7 +2,7 @@
 
 if( navigator.serviceWorker ) {
     navigator.serviceWorker.register('offline.js', {
-        scope: '/space-adventure/'
+        scope: '/augmented-reality/'
     });
 
     navigator.serviceWorker.ready.then(function(reg) {
